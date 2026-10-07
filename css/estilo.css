@@ -192,3 +192,17 @@ legend { font-weight: 700; margin-bottom: 8px; padding: 0; }
 dialog { position: relative; }
 .x { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--borda); background: var(--superficie-2); color: var(--texto); font-size: 1.6rem; line-height: 1; cursor: pointer; }
 .x:hover { border-color: var(--texto); }
+
+/* ===== Fotos ===== */
+.topo { position: relative; overflow: hidden; isolation: isolate; min-height: 220px; display: flex; flex-direction: column; justify-content: center; color: #f6ead7; }
+.topo-foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% center; z-index: -2; }
+.topo::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(23,17,13,.86), rgba(23,17,13,.62)); }
+@media (min-width: 768px) { .topo { min-height: 260px; } .topo::before { background: linear-gradient(90deg, rgba(23,17,13,.96) 0%, rgba(23,17,13,.82) 42%, rgba(23,17,13,.15) 100%); } }
+.topo h1 { color: #f6ead7; }
+.topo .marca p, .topo .passos li { color: #e6d7bf; }
+.topo .mesa { background: rgba(35,25,19,.85); color: #f6ead7; border-color: #cdbba3; }
+.item .arte img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
+#m-foto { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; margin-bottom: 12px; display: block; }
+.foto-prop { margin: 0 0 var(--e4); }
+.foto-prop img { width: 100%; height: auto; border-radius: var(--raio); display: block; }
+.foto-prop figcaption { font-size: .8rem; color: var(--texto-suave); margin-top: 6px; }

@@ -58,13 +58,17 @@
     $("#mesa").innerHTML = mesa ? "Mesa <b>" + esc(mesa) + "</b>" : "Pedido para retirada";
     $("#cats-int").innerHTML = D.categorias.map(function (c) { return '<a href="#' + c.id + '" data-cat="' + c.id + '">' + esc(c.nome) + "</a>"; }).join("");
   }
+  function arte(i) {
+    if (i.foto) return '<img src="img/' + i.foto + '-240.webp" srcset="img/' + i.foto + '-240.webp 240w, img/' + i.foto + '-640.webp 640w" sizes="96px" width="96" height="96" loading="lazy" alt="Foto ilustrativa: ' + esc(i.nome) + '">';
+    return i.bebida ? Arte.bebida() : Arte.pizza(i.cores);
+  }
   function cardapio() {
     $("#cardapio").innerHTML = D.categorias.map(function (c) {
       var itens = D.itens.filter(function (i) { return i.cat === c.id; }).map(function (i, n) {
         var acao = i.esgotado ? '<span class="esgotado">Esgotado hoje</span>'
           : i.bebida ? '<span data-ctl="' + i.id + '"></span>'
           : '<button class="btn btn-primario" data-montar="' + i.id + '" aria-label="Escolher ' + esc(i.nome) + '">Escolher</button>';
-        return '<article class="item' + (i.esgotado ? " off" : "") + '" data-busca="' + esc((i.nome + " " + i.desc).toLowerCase()) + '" style="--n:' + n + '"><div class="arte">' + (i.bebida ? Arte.bebida() : Arte.pizza(i.cores)) + "</div><div>" +
+        return '<article class="item' + (i.esgotado ? " off" : "") + '" data-busca="' + esc((i.nome + " " + i.desc).toLowerCase()) + '" style="--n:' + n + '"><div class="arte">' + arte(i) + "</div><div>" +
           "<h3>" + esc(i.nome) + (i.tag ? '<span class="tag">' + esc(i.tag) + "</span>" : "") + "</h3><p>" + esc(i.desc) + "</p>" +
           '<div class="rodape-item"><span class="preco">' + (i.bebida ? "" : "a partir de ") + brl(i.preco) + "</span>" + acao + "</div></div></article>";
       }).join("");
@@ -103,6 +107,7 @@
     var i = porId(id);
     $("#m-nome").textContent = i.nome;
     $("#m-desc").textContent = i.desc;
+    var ft = $("#m-foto"); ft.hidden = !i.foto; if (i.foto) { ft.src = "img/" + i.foto + "-640.webp"; ft.alt = "Foto ilustrativa: " + i.nome; }
     var grupo = D.itens.filter(function (x) { return !x.bebida && x.cat !== "doces" === (i.cat !== "doces") && x.id !== i.id && !x.esgotado; });
     $("#m-meio").innerHTML = '<option value="0">Não, pizza inteira de ' + esc(i.nome) + "</option>" + grupo.map(function (g) { return '<option value="' + g.id + '">½ ' + esc(i.nome) + " + ½ " + esc(g.nome) + "</option>"; }).join("");
     $("#m-tam").innerHTML = D.tamanhos.map(function (t, n) { return '<label class="opc"><input type="radio" name="tam" value="' + t.id + '"' + (n === 0 ? " checked" : "") + "><span>" + esc(t.nome) + " <small>" + esc(t.detalhe) + "</small></span></label>"; }).join("");

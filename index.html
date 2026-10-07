@@ -12,6 +12,7 @@
 <a class="pular" href="#cardapio">Pular para o cardápio</a>
 <div class="selo-demo">Amostra de demonstração · novapicks · <a href="apresentacao.html">proposta</a> · <a href="qr.html">QR das mesas</a> · <a href="painel.html" target="_blank" rel="noopener">painel do dono</a></div>
 <header class="topo">
+  <img class="topo-foto" src="img/hero-1024.webp" srcset="img/hero-640.webp 640w, img/hero-1024.webp 1024w" sizes="100vw" width="1024" height="572" alt="" fetchpriority="high">
   <div class="topo-int"><div class="marca" id="marca"></div><div class="mesa" id="mesa"></div></div>
   <ol class="passos" aria-label="Como pedir"><li><b>1</b> Escolha</li><li><b>2</b> Envie</li><li><b>3</b> Receba na mesa</li></ol>
 </header>
@@ -20,7 +21,7 @@
 <div class="acomp" id="acomp" hidden aria-live="polite"></div>
 <main id="cardapio" tabindex="-1"></main>
 <p class="vazio" id="sem-resultado" hidden>Nada encontrado. Tente outro nome.</p>
-<p class="rodape-pagina">Cardápio digital desenvolvido pela <a href="https://novapicks.website">novapicks</a>. Preços e itens de exemplo.</p>
+<p class="rodape-pagina">Cardápio digital desenvolvido pela <a href="https://novapicks.website">novapicks</a>. Preços e itens de exemplo. Fotos ilustrativas geradas por IA.</p>
 
 <button class="btn btn-contorno garcom" id="garcom" type="button" style="background:var(--superficie)">🛎 Chamar garçom</button>
 
@@ -31,6 +32,7 @@
 
 <dialog id="montar" aria-labelledby="m-nome">
   <button class="x" id="m-fechar-x" type="button" aria-label="Fechar">×</button>
+  <img id="m-foto" hidden width="640" height="640" alt="">
   <h2 id="m-nome"></h2><p id="m-desc" class="aviso" style="margin-top:0"></p>
   <fieldset><legend>Tamanho</legend><div id="m-tam" class="opcs"></div></fieldset>
   <label for="m-meio">Meio a meio?</label><select id="m-meio"></select>
