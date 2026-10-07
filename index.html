@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Cardápio digital com pedido por mesa via QR code.">
+<meta name="theme-color" content="#17110d">
+<title>Forno Nobre · Cardápio digital</title>
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<a class="pular" href="#cardapio">Pular para o cardápio</a>
+<div class="selo-demo">Amostra de demonstração · novapicks · <a href="apresentacao.html">proposta</a> · <a href="qr.html">QR das mesas</a> · <a href="painel.html" target="_blank" rel="noopener">painel do dono</a></div>
+<header class="topo">
+  <div class="topo-int"><div class="marca" id="marca"></div><div class="mesa" id="mesa"></div></div>
+  <ol class="passos" aria-label="Como pedir"><li><b>1</b> Escolha</li><li><b>2</b> Envie</li><li><b>3</b> Receba na mesa</li></ol>
+</header>
+<nav class="cats" aria-label="Categorias do cardápio"><div class="cats-int" id="cats-int"></div></nav>
+<div class="busca-wrap"><label class="so-leitor" for="busca">Buscar no cardápio</label><input type="search" id="busca" placeholder="Buscar pizza, ingrediente ou bebida" autocomplete="off"></div>
+<div class="acomp" id="acomp" hidden aria-live="polite"></div>
+<main id="cardapio" tabindex="-1"></main>
+<p class="vazio" id="sem-resultado" hidden>Nada encontrado. Tente outro nome.</p>
+<p class="rodape-pagina">Cardápio digital desenvolvido pela <a href="https://novapicks.website">novapicks</a>. Preços e itens de exemplo.</p>
+
+<button class="btn btn-contorno garcom" id="garcom" type="button" style="background:var(--superficie)">🛎 Chamar garçom</button>
+
+<div class="barra"><div class="barra-int">
+  <div class="resumo" id="barra-resumo" aria-live="polite"></div>
+  <button class="btn btn-primario" id="ver-pedido" type="button">Ver pedido</button>
+</div></div>
+
+<dialog id="montar" aria-labelledby="m-nome">
+  <button class="x" id="m-fechar-x" type="button" aria-label="Fechar">×</button>
+  <h2 id="m-nome"></h2><p id="m-desc" class="aviso" style="margin-top:0"></p>
+  <fieldset><legend>Tamanho</legend><div id="m-tam" class="opcs"></div></fieldset>
+  <label for="m-meio">Meio a meio?</label><select id="m-meio"></select>
+  <fieldset><legend>Borda recheada</legend><div id="m-borda" class="opcs"></div></fieldset>
+  <div class="acoes">
+    <span class="qtd" role="group" aria-label="Quantidade"><button id="m-menos" type="button" aria-label="Diminuir">−</button><output id="m-qtd">1</output><button id="m-mais" type="button" aria-label="Aumentar">+</button></span>
+    <button class="btn btn-primario" id="m-add" type="button"></button>
+  </div>
+  <div class="acoes"><button class="btn btn-contorno" id="m-fechar" type="button">Cancelar</button></div>
+</dialog>
+
+<dialog id="painel" aria-labelledby="titulo-pedido">
+  <button class="x" id="fechar-x" type="button" aria-label="Fechar pedido">×</button>
+  <h2 id="titulo-pedido">Seu pedido</h2>
+  <div id="lista"></div>
+  <div class="totais" id="totais"></div>
+  <label for="nome">Seu nome (opcional)</label><input type="text" id="nome" maxlength="40" autocomplete="given-name">
+  <label for="obs">Observações (ex.: sem cebola)</label>
+  <textarea id="obs" rows="2" maxlength="200"></textarea>
+  <div id="pix-box" hidden>
+    <div id="pix-qr"></div>
+    <label for="pix-code">Pix copia e cola</label>
+    <input type="text" id="pix-code" readonly>
+    <button class="btn btn-contorno" id="pix-copiar" type="button" style="width:100%;margin-top:8px">Copiar código Pix</button>
+    <p class="aviso">Chave de demonstração: nenhum valor é cobrado nesta amostra.</p>
+  </div>
+  <div class="acoes">
+    <button class="btn btn-contorno" id="fechar" type="button">Voltar ao cardápio</button>
+    <button class="btn btn-contorno" id="pix" type="button">Pagar com Pix</button>
+    <button class="btn btn-primario" id="enviar" type="button">Enviar pedido</button>
+  </div>
+  <p class="aviso">O pedido vai para a pizzaria e para o WhatsApp da casa, já com o número da mesa. <button class="btn btn-contorno" id="limpar" type="button" style="min-height:32px;padding:2px 12px;font-size:.85rem">Limpar pedido</button></p>
+</dialog>
+
+<script src="vendor/qrcode.js"></script>
+<script src="js/dados.js"></script>
+<script src="js/store.js"></script>
+<script src="js/arte.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
